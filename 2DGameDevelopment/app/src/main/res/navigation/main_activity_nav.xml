@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_activity_nav">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity_nav"
+    app:startDestination="@id/mainFragment">
 
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.a2dgamedevelopment.ui.fragment.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_gameScreenFragment"
+            app:destination="@id/gameScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameScreenFragment"
+        android:name="com.example.a2dgamedevelopment.ui.fragment.GameScreenFragment"
+        android:label="fragment_game_screen"
+        tools:layout="@layout/fragment_game_screen" >
+        <action
+            android:id="@+id/action_gameScreenFragment_to_resultScreenFragment"
+            app:destination="@id/resultScreenFragment"
+            app:popUpTo="@id/gameScreenFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/resultScreenFragment"
+        android:name="com.example.a2dgamedevelopment.ui.fragment.ResultScreenFragment"
+        android:label="fragment_result_screen"
+        tools:layout="@layout/fragment_result_screen" >
+        <action
+            android:id="@+id/action_resultScreenFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 </navigation>
