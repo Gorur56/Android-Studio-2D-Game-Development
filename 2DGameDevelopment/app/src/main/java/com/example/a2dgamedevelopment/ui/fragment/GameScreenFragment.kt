@@ -25,8 +25,15 @@ class GameScreenFragment : Fragment() {
     private var anaKarakterX = 0.0f
     private var anaKarakterY = 0.0f
 
+    //Boyutlar
+    private var ekranGenisligi = 0
+    private var ekranYuksekligi = 0
+    private var anaKarakterGenisligi = 0
+    private var anaKarakterYuksekligi = 0
+
     //Kontroller
-    private var dokunmaKontrol = false
+    private var dokunmaKontrol = true
+    private var baslangicKontrol = false
 
     private val timer = Timer()
 
@@ -44,6 +51,7 @@ class GameScreenFragment : Fragment() {
         }*/
 
         //Ekrana dokunup dokunmadığını ele alıyoruz.
+
         binding.cl.setOnTouchListener(object : View.OnTouchListener{
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
 
@@ -51,31 +59,54 @@ class GameScreenFragment : Fragment() {
                 Log.e("Yükseklik2",(binding.cl.height).toString())
                 Log.e("Genişlik2",(binding.cl.width).toString()) ******/
 
-                if( event?.action == MotionEvent.ACTION_DOWN ) { //Ekrana dokunuyorsa
-                    Log.d("MotionEvent","ACTION_DOWN: Ekrana Dokundu.")
-                }
+                if( baslangicKontrol ) {
+                    if( event?.action == MotionEvent.ACTION_DOWN ) { //Ekrana dokunuyorsa
+                        Log.d("MotionEvent","ACTION_DOWN: Ekrana Dokundu.")
+                        dokunmaKontrol = true
+                    }
 
-                if( event?.action == MotionEvent.ACTION_UP ) { //Ekranı bıraktığımızda
-                    Log.d("MotionEvent", "ACTION_UP: Ekranı bıraktı.")
-                }
+                    if( event?.action == MotionEvent.ACTION_UP ) { //Ekranı bıraktığımızda
+                        Log.d("MotionEvent", "ACTION_UP: Ekranı bıraktı.")
+                        dokunmaKontrol = false
+                    }
+                } else {
+                    //if else ile timer 'ı bir defa çalışmasını sağlıyoruz.baslangicKontrol bir kere true olduğuktan sonra hep if koşulu çalışacak artık.
+                    baslangicKontrol = true
 
-                anaKarakterX = binding.imageViewAnaKarakter.x
-                anaKarakterY = binding.imageViewAnaKarakter.y
+                    anaKarakterX = binding.imageViewAnaKarakter.x
+                    anaKarakterY = binding.imageViewAnaKarakter.y
 
-                timer.schedule(0,20){ //0: gecikme, 20: Çalışma aralığı
-                    Handler(Looper.getMainLooper()).post {
-                        if(dokunmaKontrol) {
-                            anaKarakterY -= 20.0f // Anakarakteri yukarı kaydırma
-                        } else {
-                            anaKarakterY += 20.0f // AnaKarakteri aşağı kaydırma
+                    anaKarakterGenisligi = binding.imageViewAnaKarakter.width
+                    anaKarakterYuksekligi = binding.imageViewAnaKarakter.height
+
+                    ekranGenisligi = binding.cl.width
+                    ekranYuksekligi = binding.cl.height
+
+                    timer.schedule(0,20){ //0: gecikme, 20: Çalışma aralığı
+                        Handler(Looper.getMainLooper()).post {
+                            anaKarakterHareketEttirme()
                         }
-                        binding.imageViewAnaKarakter.y = anaKarakterY //En son değeri Anakarakter nesnemize atayıp konumunu değiştiriyoruz.
                     }
                 }
-
                 return true
             }
-
         })
+    }
+
+    private  fun anaKarakterHareketEttirme() {
+        if(dokunmaKontrol) {
+            anaKarakterY -= 20.0f // Anakarakteri yukarı kaydırma
+        } else {
+            anaKarakterY += 20.0f // AnaKarakteri aşağı kaydırma
+        }
+
+        if( anaKarakterY <= 0.0f ) {
+            anaKarakterY = 0.0f
+        }
+
+        if( anaKarakterY >= ekranYuksekligi - anaKarakterYuksekligi ) {
+            anaKarakterY = (ekranYuksekligi - anaKarakterYuksekligi).toFloat()
+        }
+        binding.imageViewAnaKarakter.y = anaKarakterY //En son değeri Anakarakter nesnemize atayıp konumunu değiştiriyoruz.
     }
 }
