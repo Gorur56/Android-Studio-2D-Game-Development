@@ -9,7 +9,11 @@
 ![image](https://github.com/user-attachments/assets/d8489ff0-d024-42a8-8181-3c35466fdca3) ![image](https://github.com/user-attachments/assets/bb99d852-f1db-426b-80b0-76615bfcc073)
 
 
+
 ###### SONUÇ EKRANI
+
+
+![image](https://github.com/user-attachments/assets/8559a39f-8fca-4662-b64d-067aacde9811)
 
 
 
