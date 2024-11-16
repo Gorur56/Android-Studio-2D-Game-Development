@@ -27,6 +27,10 @@ class GameScreenFragment : Fragment() {
     private var anaKarakterY = 0.0f
     private var siyahKareX = 0.0f
     private var siyahKareY = 0.0f
+    private var sariDaireX = 0.0f
+    private var sariDaireY = 0.0f
+    private var kirmiziUcgenX = 0.0f
+    private var kirmiziUcgenY = 0.0f
 
     //Boyutlar
     private var ekranGenisligi = 0
@@ -116,6 +120,8 @@ class GameScreenFragment : Fragment() {
 
     private fun cisimleriHaraketEttirme() {
         siyahKareX -= 25.0f //değişme hızı 25 ne kadar büyük olursa o kadar hızlı olur.
+        sariDaireX -= 20.0f
+        kirmiziUcgenX -= 30.0f
 
         if( siyahKareX < 0.0f ) { //Sola doğru ekranın dışına kaymasını engelliyoruz.
             siyahKareX = ekranYuksekligi + 20.0f
@@ -126,6 +132,22 @@ class GameScreenFragment : Fragment() {
         binding.imageViewBlackSquare.x = siyahKareX
         //binding.imageViewBlackSquare.y = ekranYuksekligi / 2.0f
         binding.imageViewBlackSquare.y = siyahKareY
+
+        if( sariDaireX < 0.0f ) {
+            sariDaireX = ekranYuksekligi + 20.0f
+            sariDaireY = floor( Math.random() * ekranYuksekligi).toFloat()
+        }
+
+        binding.imageViewYellowCircle.x = sariDaireX
+        binding.imageViewYellowCircle.y = sariDaireY
+
+        if( kirmiziUcgenX < 0.0f ) {
+            kirmiziUcgenX = ekranYuksekligi + 20.0f
+            kirmiziUcgenY = floor(Math.random() * ekranYuksekligi).toFloat()
+        }
+
+        binding.imageViewRedTriangle.x = kirmiziUcgenX
+        binding.imageViewRedTriangle.y = kirmiziUcgenY
 
     }
 }
