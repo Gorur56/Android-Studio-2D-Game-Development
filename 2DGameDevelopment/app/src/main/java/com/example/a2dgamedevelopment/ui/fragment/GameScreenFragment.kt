@@ -16,6 +16,7 @@ import com.example.a2dgamedevelopment.R
 import com.example.a2dgamedevelopment.databinding.FragmentGameScreenBinding
 import java.util.Timer
 import kotlin.concurrent.schedule
+import kotlin.math.floor
 
 class GameScreenFragment : Fragment() {
     private lateinit var binding: FragmentGameScreenBinding
@@ -118,10 +119,13 @@ class GameScreenFragment : Fragment() {
 
         if( siyahKareX < 0.0f ) { //Sola doğru ekranın dışına kaymasını engelliyoruz.
             siyahKareX = ekranYuksekligi + 20.0f
+
+            siyahKareY = floor(Math.random() * ekranYuksekligi).toFloat() // floor yuvarlama işlemi yapar. Ekran yükseliği arasında rastgele bir değer üretiyoruz.
         }
 
         binding.imageViewBlackSquare.x = siyahKareX
-        binding.imageViewBlackSquare.y = ekranYuksekligi / 2.0f
+        //binding.imageViewBlackSquare.y = ekranYuksekligi / 2.0f
+        binding.imageViewBlackSquare.y = siyahKareY
 
     }
 }
