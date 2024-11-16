@@ -89,6 +89,8 @@ class GameScreenFragment : Fragment() {
                     //if else ile timer 'ı bir defa çalışmasını sağlıyoruz.baslangicKontrol bir kere true olduğuktan sonra hep if koşulu çalışacak artık.
                     baslangicKontrol = true
 
+                    binding.textViewOyunBasla.visibility = View.INVISIBLE
+
                     anaKarakterX = binding.imageViewAnaKarakter.x
                     anaKarakterY = binding.imageViewAnaKarakter.y
 
