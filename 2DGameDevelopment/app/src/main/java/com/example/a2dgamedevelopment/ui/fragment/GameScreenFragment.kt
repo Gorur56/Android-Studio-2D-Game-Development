@@ -47,6 +47,15 @@ class GameScreenFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_game_screen, container, false)
 
+       binding.imageViewBlackSquare.x = -800.0f
+       binding.imageViewBlackSquare.y = -800.0f
+
+        binding.imageViewYellowCircle.x = -800.0f
+        binding.imageViewYellowCircle.y = -800.0f
+
+        binding.imageViewRedTriangle.x = -800.0f
+        binding.imageViewRedTriangle.y = -800.0f
+
         return binding.root
     }
 

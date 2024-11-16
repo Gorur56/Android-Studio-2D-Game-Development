@@ -16,7 +16,6 @@ class MainFragment : Fragment() {
     private lateinit var navController: NavController
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
-
         return binding.root
     }
 
