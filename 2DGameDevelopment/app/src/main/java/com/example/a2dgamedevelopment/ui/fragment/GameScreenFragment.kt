@@ -24,6 +24,8 @@ class GameScreenFragment : Fragment() {
     //Pozisyonlar
     private var anaKarakterX = 0.0f
     private var anaKarakterY = 0.0f
+    private var siyahKareX = 0.0f
+    private var siyahKareY = 0.0f
 
     //Boyutlar
     private var ekranGenisligi = 0
@@ -85,6 +87,7 @@ class GameScreenFragment : Fragment() {
                     timer.schedule(0,20){ //0: gecikme, 20: Çalışma aralığı
                         Handler(Looper.getMainLooper()).post {
                             anaKarakterHareketEttirme()
+                            cisimleriHaraketEttirme()
                         }
                     }
                 }
@@ -108,5 +111,17 @@ class GameScreenFragment : Fragment() {
             anaKarakterY = (ekranYuksekligi - anaKarakterYuksekligi).toFloat()
         }
         binding.imageViewAnaKarakter.y = anaKarakterY //En son değeri Anakarakter nesnemize atayıp konumunu değiştiriyoruz.
+    }
+
+    private fun cisimleriHaraketEttirme() {
+        siyahKareX -= 25.0f //değişme hızı 25 ne kadar büyük olursa o kadar hızlı olur.
+
+        if( siyahKareX < 0.0f ) { //Sola doğru ekranın dışına kaymasını engelliyoruz.
+            siyahKareX = ekranYuksekligi + 20.0f
+        }
+
+        binding.imageViewBlackSquare.x = siyahKareX
+        binding.imageViewBlackSquare.y = ekranYuksekligi / 2.0f
+
     }
 }
