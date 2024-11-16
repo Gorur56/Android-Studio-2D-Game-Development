@@ -113,10 +113,13 @@ class GameScreenFragment : Fragment() {
     }
 
     private  fun anaKarakterHareketEttirme() {
+        //ana karakter ekran büyüklüğüne göre ayrı hizda çalışması için bunu dinamik
+        val anaKarakterHiz = ekranYuksekligi / 60.0f
+
         if(dokunmaKontrol) {
-            anaKarakterY -= 20.0f // Anakarakteri yukarı kaydırma
+            anaKarakterY -= anaKarakterHiz // Anakarakteri yukarı kaydırma
         } else {
-            anaKarakterY += 20.0f // AnaKarakteri aşağı kaydırma
+            anaKarakterY += anaKarakterHiz // AnaKarakteri aşağı kaydırma
         }
 
         if( anaKarakterY <= 0.0f ) {
@@ -130,9 +133,9 @@ class GameScreenFragment : Fragment() {
     }
 
     private fun cisimleriHaraketEttirme() {
-        siyahKareX -= 25.0f //değişme hızı 25 ne kadar büyük olursa o kadar hızlı olur.
-        sariDaireX -= 20.0f
-        kirmiziUcgenX -= 30.0f
+        siyahKareX -= ekranGenisligi / 44.0f //değişme hızı 25 ne kadar büyük olursa o kadar hızlı olur.
+        sariDaireX -= ekranGenisligi / 54.0f
+        kirmiziUcgenX -= ekranGenisligi / 34.0f
 
         if( siyahKareX < 0.0f ) { //Sola doğru ekranın dışına kaymasını engelliyoruz.
             siyahKareX = ekranYuksekligi + 20.0f
